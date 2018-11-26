@@ -1,0 +1,44 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Fornecedores</h1>
+  </div>
+</div>
+{{end}}
+
+<div class="row">
+    <div class="col-md-4 align-self-end">
+        <a href="{{=URL('cadastros', 'n_fornecedor')}}" class="btn btn-success">Cadastrar Fornecedor</a>
+    </div>
+</div>
+<br>
+<div class="row">    
+    <div class="col-md-8 col-sm-12">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone(s)</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{for forn in fornecedores:}}
+                <tr>
+                    <th>{{=forn.nome}}</th>
+                    <th>
+                        {{for i in forn.telefone:}}
+                        {{=i + ','}}
+                        {{pass}}
+                    </th>
+                    <th><a href="{{=URL('cadastros', 'n_fornecedor', vars={'fornecedor':forn.id})}}" class="btn btn-sm btn-info">Editar</a></th>
+                </tr>
+                {{pass}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

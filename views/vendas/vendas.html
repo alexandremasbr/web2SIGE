@@ -1,0 +1,54 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Vendas</h1>
+  </div>
+</div>
+{{end}}
+
+<div class="row">
+    <div class="col">
+        <a href="{{=URL('vendas', 'n_venda')}}" class="btn btn-success">Nova Venda</a>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Código da Venda</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Total da Venda</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{for venda in vendas:}}
+                    <tr>
+                        <th>{{=venda.id}}</th>
+                        <th>{{=venda.created_on.strftime('%d/%m/%Y')}}</th>
+                        <th>{{if venda.cliente:}}
+                            {{=venda.cliente.nome}}
+                            {{else:}}
+                            <p class="text-danger">Venda não finalizada</p>
+                            {{pass}}
+                        </th>
+                        <th>{{=venda.total}}</th>
+                        <th><a href="{{=URL('vendas', 'n_venda', vars={'venda':venda.id})}}" class="btn btn-sm btn-info">Detalhes</a></th>
+                    </tr>
+                    {{pass}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

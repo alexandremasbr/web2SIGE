@@ -1,0 +1,54 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Compras</h1>
+  </div>
+</div>
+{{end}}
+
+<div class="row">
+    <div class="col">
+        <a href="{{=URL('compras', 'n_compra')}}" class="btn btn-success">Nova Compra</a>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Código da Compra</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Total da Compra</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{for compra in compras:}}
+                    <tr>
+                        <th>{{=compra.id}}</th>
+                        <th>{{=compra.created_on.strftime('%d/%m/%Y')}}</th>
+                        <th>{{if compra.fornecedor:}}
+                            {{=compra.fornecedor.nome}}
+                            {{else:}}
+                            <p class="text-danger">Compra não finalizada</p>
+                            {{pass}}
+                        </th>
+                        <th>{{=compra.total}}</th>
+                        <th><a href="{{=URL('compras', 'n_compra', vars={'compra':compra.id})}}" class="btn btn-sm btn-info">Detalhes</a></th>
+                    </tr>
+                    {{pass}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

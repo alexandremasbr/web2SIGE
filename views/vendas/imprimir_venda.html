@@ -1,0 +1,75 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Imprimir Venda</h1>
+  </div>
+</div>
+{{end}}
+
+<div id="print-area">
+    <div class="row">
+        <div class="col">
+            <p>Código da venda: {{=venda.id}}</p>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Data: {{=venda.created_on.strftime('%d/%m/%Y')}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Cliente: {{=venda.cliente.nome}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Valor unitário</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{for item in itens:}}
+                        <tr>
+                            <th>{{=item.produto.nome}}</th>
+                            <th>{{=item.valorUnit}}</th>
+                            <th>{{=item.quantidade}}</th>
+                            <th>{{=item.total}}</th>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Total da Venda: {{=venda.total}}</h4>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <a href="#" class="btn btn-success" id="btn-print">Imprimir</a>
+    </div>
+</div>
+
+{{block page_js}}
+<script src="{{=URL('static','js/PrintArea.js')}}"></script>
+<script type="text/javascript">
+   $("#btn-print").click(function(){
+	    $("#print-area").printArea();
+	});
+</script>
+{{end page_js}}

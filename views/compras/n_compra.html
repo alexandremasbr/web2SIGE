@@ -1,0 +1,71 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Nova/Editar Compra</h1>
+  </div>
+</div>
+{{end}}
+
+<div class="row">
+  <div class="col-lg-8 col-sm-12">
+    <h5>Adicionar Produto:</h5>
+    {{=form}}
+  </div>
+  <div class="col-lg-4 col-sm-12">
+    <h5>Selecionar Cliente:</h5>
+    {{=compra}}
+  </div>
+</div>  
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <div class="table-responsive">
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Valor unitário</th>
+            <th>Quantidade</th>
+            <th>Desconto</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{for item in itens:}}
+          <tr>
+            <th>{{=item.produto.nome}}</th>
+            <th>{{=item.valorUnit}}</th>
+            <th>{{=item.quantidade}}</th>
+            <th>{{=item.desconto}}%</th>
+            <th>{{=item.total}}</th>
+          </tr>
+          {{pass}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <h4>Total da Compra: {{=total_compra}}</h4>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col">
+      <a href="{{ =URL('compras', 'cancelar_compra', vars={'compra':compra_id}) }} " class="btn btn-danger">Cancelar Compra</a>
+  </div>
+  <div class="col">
+      <a href="{{ =URL('compras', 'imprimir_compra', vars={'compra':compra_id}) }} " class="btn btn-info">Imprimir</a>
+  </div>
+</div>
+

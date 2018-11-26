@@ -1,0 +1,40 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<div class="jumbotron jumbotron-fluid" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
+  <div class="container center">
+    <h1 class="display-5">Produtos</h1>
+  </div>
+</div>
+{{end}}
+
+<div class="row">
+    <div class="col">
+        <a href="{{=URL('cadastros', 'n_produto')}}" class="btn btn-success">Cadastrar Produto</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nome</th>                        
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{for produto in produtos:}}
+                    <tr>
+                        <th>{{=produto.nome}}</th>                        
+                        <th><a href="{{=URL('cadastros', 'n_produto', vars={'produto':produto.id})}}" class="btn btn-sm btn-info">Editar</a></th>
+                    </tr>
+                    {{pass}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
