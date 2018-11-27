@@ -10,7 +10,6 @@ __pycache__/*
 cache/*
 databases/*
 errors/*
-private/*
 sessions/*
 uploads/*
 
