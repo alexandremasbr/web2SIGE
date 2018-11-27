@@ -53,7 +53,7 @@ Vendas = db.define_table('vendas',
                          auth.signature)
 Vendas.cliente.requires = IS_IN_DB(db, 'clientes.id', '%(nome)s',
                                    error_message='Preencha com o nome do Cliente',
-                                   zero=T('Escolha um cliente...'))
+                                   zero=T('Choose one...'))
 
 
 VendasProduto = db.define_table('vendasProduto',

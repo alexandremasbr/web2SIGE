@@ -39,7 +39,7 @@
 'change password': 'mudar senha',
 'Change Password': 'Change Password',
 'Check to delete': 'Marque para apagar',
-'Choose one...': 'Choose one...',
+'Choose one...': 'Escolha um...',
 'Clear CACHE?': 'Limpar CACHE?',
 'Clear DISK': 'Limpar DISCO',
 'Clear RAM': 'Limpar memória RAM',
