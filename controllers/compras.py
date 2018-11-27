@@ -17,6 +17,7 @@ def n_compra():
     
     # Consultas
     itens = db(ComprasProduto.codCompra == compra_id).select(
+                                                          ComprasProduto.id,
                                                           ComprasProduto.produto,
                                                           ComprasProduto.valorUnit,
                                                           ComprasProduto.quantidade,
@@ -50,6 +51,13 @@ def cancelar_compra():
     compra_id = request.vars.compra
     db(Compras.id == compra_id).delete()
     redirect(URL('compras', 'compras'))
+
+
+def excluir_produto_compra():    
+    compra_id = request.args[0]
+    p_id = request.args[1]
+    db(ComprasProduto.id == p_id).delete()
+    redirect(URL('compras', 'n_compra', vars={'compra':compra_id}))
 
 
 def imprimir_compra():

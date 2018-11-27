@@ -17,6 +17,7 @@ def n_venda():
     
     # Consultas    
     itens = db(VendasProduto.codVenda == venda_id).select(
+                                                          VendasProduto.id,
                                                           VendasProduto.produto,
                                                           VendasProduto.valorUnit,
                                                           VendasProduto.quantidade,
@@ -66,3 +67,10 @@ def cancelar_venda():
     venda_id = request.vars.venda
     db(Vendas.id == venda_id).delete()
     redirect(URL('vendas', 'vendas'))
+
+
+def excluir_produto_venda():    
+    venda_id = request.args[0]
+    p_id = request.args[1]
+    db(VendasProduto.id == p_id).delete()
+    redirect(URL('vendas', 'n_venda', vars={'venda':venda_id}))

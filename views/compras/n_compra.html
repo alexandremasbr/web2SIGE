@@ -32,6 +32,7 @@
             <th>Quantidade</th>
             <th>Desconto</th>
             <th>Total</th>
+            <th>Excluir</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +43,9 @@
             <th>{{=item.quantidade}}</th>
             <th>{{=item.desconto}}%</th>
             <th>{{=item.total}}</th>
+            <th>
+              <a href="{{=URL('compras', 'excluir_produto_compra', args=[compra_id, item.id])}}" class="btn btn-danger btn-sm">Excluir</a>
+            </th>
           </tr>
           {{pass}}
         </tbody>

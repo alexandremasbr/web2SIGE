@@ -139,12 +139,7 @@ if configuration.get('scheduler.enabled'):
 # -------------------------------------------------------------------------
 if db(db.auth_group).count() == 0:
     db.auth_group.insert(role="admin", description="Administrador")
-    db.auth_group.insert(role="user", description="Usuário")
     db.commit()
-auth.settings.create_user_groups = False
-# Por padrão todo novo usuário é adicionado ao grupo 'user' exceto o
-# primeiro a se cadastrar que será do grupo 'admin'.
+#O primeiro usuário a se cadastrar será do grupo 'admin'.
 if db(db.auth_user).count() == 0:
     auth.settings.everybody_group_id = 1
-else:
-    auth.settings.everybody_group_id = 2
